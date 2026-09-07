@@ -1,0 +1,60 @@
+{
+  "width": 128,
+  "height": 128,
+  "originX": 0.5,
+  "originY": 0.84375,
+  "clips": {
+    "idle": {
+      "start": 0,
+      "count": 24
+    },
+    "run": {
+      "start": 24,
+      "count": 24
+    },
+    "takeoff": {
+      "start": 48,
+      "count": 4
+    },
+    "rise": {
+      "start": 52,
+      "count": 6
+    },
+    "apex": {
+      "start": 58,
+      "count": 4
+    },
+    "fall": {
+      "start": 62,
+      "count": 6
+    },
+    "land": {
+      "start": 68,
+      "count": 6
+    },
+    "roll": {
+      "start": 74,
+      "count": 16
+    },
+    "attack1": {
+      "start": 90,
+      "count": 16
+    },
+    "attack2": {
+      "start": 106,
+      "count": 16
+    },
+    "attack3": {
+      "start": 122,
+      "count": 20
+    },
+    "hurt": {
+      "start": 142,
+      "count": 6
+    },
+    "death": {
+      "start": 148,
+      "count": 14
+    }
+  }
+}

@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#101716" />
+    <meta
+      name="description"
+      content="余烬 EMBERFALL — 迎战丧钟执刑者，读懂红光预兆，在灰烬中取胜。"
+    />
+    <title>余烬 EMBERFALL — 丧钟执刑者</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23101716'/%3E%3Cpath d='M17 3 7 19l8 10 10-13-8 5z' fill='%23e6a566'/%3E%3C/svg%3E"
+    />
+  </head>
+  <body>
+    <main>
+      <header class="masthead">
+        <a class="wordmark" href="/" aria-label="余烬首页"
+          ><span class="brand-mark">ϟ</span> EMBERFALL
+          <span class="brand-cn">余烬</span></a
+        >
+        <div class="edition">
+          <span class="status-dot"></span> PLAYABLE PROTOTYPE
+          <span class="edition-number">BUILD 0.1</span>
+        </div>
+      </header>
+      <section class="intro" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">A PIXEL-ART BOSS ENCOUNTER</p>
+          <h1 id="page-title">听见丧钟，<span>看清刀锋。</span></h1>
+          <p class="intro-copy">
+            观察红光预兆，穿过执刑者的攻势，让余烬烧到最后。
+          </p>
+        </div>
+        <div class="intro-note">
+          <span>01 — THE BELL EXECUTIONER</span>
+          <p>一场战斗，两段怒火，没有退路。</p>
+        </div>
+      </section>
+      <section class="game-shell" aria-label="余烬游戏">
+        <div class="game-toolbar">
+          <div>
+            <span class="status-dot"></span><span id="location">丧钟刑场</span
+            ><span class="toolbar-divider">/</span
+            ><span id="chapter">等待启程</span>
+          </div>
+          <div class="toolbar-actions">
+            <select id="language" aria-label="Language / 语言">
+              <option value="zh" lang="zh-CN">中文</option>
+              <option value="en" lang="en">English</option>
+            </select>
+            <button id="sound" aria-label="开启声音" aria-pressed="false">
+              ♪ <span>声音关闭</span></button
+            ><button id="pause" aria-label="暂停游戏" disabled>Ⅱ</button
+            ><button id="fullscreen" aria-label="全屏游戏">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 20 20"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.3"
+                aria-hidden="true"
+              >
+                <path d="M7 3H3v4m10-4h4v4M3 13v4h4m10-4v4h-4" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="viewport" id="viewport">
+          <div
+            id="game"
+            tabindex="0"
+            role="application"
+            aria-label="首领动作游戏。A D 移动，空格跳跃，鼠标左键轻攻击，右键重攻击，长按右键蓄力松开释放。Ctrl 翻滚，Q 烬线，F 回火，Esc 暂停。键盘备用 J 轻击、L 重击。"
+          ></div>
+          <div class="hud" id="hud" hidden>
+            <div class="health-group">
+              <span class="hero-emblem">ϟ</span>
+              <div>
+                <div class="health-label">
+                  <span>逐火者</span><span id="health-text">100 / 100</span>
+                </div>
+                <div class="health-track"><div id="health-fill"></div></div>
+                <div class="sr-only" id="flask-label">F · 余烬药剂 × 2</div>
+                <div class="sr-only" id="skill-status">Q · 烬线就绪</div>
+              </div>
+            </div>
+            <div class="ability-rack" aria-label="武器与技能状态">
+              <div
+                class="ability"
+                data-ability="attack"
+                role="img"
+                aria-label="鼠标左键轻击，右键重击与蓄力"
+              >
+                <span class="ability-art" aria-hidden="true"></span><kbd>鼠</kbd
+                ><span class="ability-value" aria-hidden="true"></span
+                ><span class="ability-name" aria-hidden="true">刑刃</span>
+              </div>
+              <div
+                class="ability"
+                data-ability="roll"
+                role="img"
+                aria-label="Ctrl 灰步"
+              >
+                <span class="ability-art" aria-hidden="true"></span
+                ><kbd>Ctrl</kbd
+                ><span class="ability-value" aria-hidden="true"></span
+                ><span class="ability-name" aria-hidden="true">灰步</span>
+              </div>
+              <div
+                class="ability"
+                data-ability="skill"
+                role="img"
+                aria-label="Q 烬线"
+              >
+                <span class="ability-art" aria-hidden="true"></span><kbd>Q</kbd
+                ><span class="ability-value" aria-hidden="true"></span
+                ><span class="ability-name" aria-hidden="true">烬线</span>
+              </div>
+              <div
+                class="ability"
+                data-ability="heal"
+                role="img"
+                aria-label="F 回火"
+              >
+                <span class="ability-art" aria-hidden="true"></span><kbd>F</kbd
+                ><span class="ability-value" aria-hidden="true">×2</span
+                ><span class="ability-name" aria-hidden="true">回火</span>
+              </div>
+            </div>
+            <div class="run-stats">
+              <span>战斗</span><span id="timer">00:00</span>
+            </div>
+          </div>
+          <div class="boss-hud" id="boss-hud" hidden>
+            <div class="boss-label">
+              <strong>丧钟执刑者</strong
+              ><span id="boss-health-text">900 / 900</span>
+            </div>
+            <div
+              id="boss-health-track"
+              class="boss-health-track"
+              role="progressbar"
+              aria-label="丧钟执刑者生命"
+              aria-valuemin="0"
+              aria-valuemax="900"
+              aria-valuenow="900"
+              aria-valuetext="丧钟执刑者，阶段 1，生命 900 / 900"
+            >
+              <div id="boss-health-fill"></div>
+            </div>
+          </div>
+          <div id="objective" class="objective" hidden></div>
+          <div class="overlay" id="overlay">
+            <div class="title-screen">
+              <div class="title-rune">ϟ</div>
+              <p class="eyebrow">FROM ASH, WE RISE</p>
+              <h2>余<span>烬</span></h2>
+              <p class="game-title-en">E M B E R F A L L</p>
+              <div class="title-rule"><i></i><span>◆</span><i></i></div>
+              <p class="title-description">
+                红光宣告杀意，灰烬记录失误。<br />击败丧钟执刑者。
+              </p>
+              <button class="primary-button" id="start" disabled>
+                开始挑战 <span>→</span>
+              </button>
+              <p class="start-note">键盘 / 手柄 / 触屏 · 推荐横屏与耳机</p>
+            </div>
+          </div>
+          <div id="announcement" aria-live="polite" class="sr-only"></div>
+        </div>
+        <div class="touch-controls" aria-label="触屏操作">
+          <div>
+            <button data-control="left" aria-label="向左移动">←</button
+            ><button data-control="right" aria-label="向右移动">→</button>
+          </div>
+          <div>
+            <button
+              class="ability"
+              data-ability="heal"
+              data-control="heal"
+              aria-label="治疗"
+            >
+              <span class="ability-art" aria-hidden="true"></span
+              ><span class="ability-value" aria-hidden="true">×2</span></button
+            ><button
+              class="ability"
+              data-ability="skill"
+              data-control="skill"
+              aria-label="施放烬线"
+            >
+              <span class="ability-art" aria-hidden="true"></span
+              ><span class="ability-value" aria-hidden="true"></span></button
+            ><button data-control="jump" aria-label="跳跃">↑</button
+            ><button
+              class="ability"
+              data-ability="roll"
+              data-control="roll"
+              aria-label="翻滚"
+            >
+              <span class="ability-art" aria-hidden="true"></span
+              ><span class="ability-value" aria-hidden="true"></span></button
+            ><button
+              class="ability"
+              data-ability="attack"
+              data-control="attack"
+              aria-label="轻攻击"
+            >
+              <span class="ability-art" aria-hidden="true"></span
+              ><span class="ability-value" aria-hidden="true"></span>
+            </button>
+            <button
+              data-control="heavy"
+              aria-label="重攻击，按住蓄力，松开释放"
+            >
+              重
+            </button>
+          </div>
+        </div>
+        <div class="controls-strip">
+          <span><kbd>A</kbd><kbd>D</kbd> 移动</span
+          ><span><kbd>SPACE</kbd> 跳跃</span><span><kbd>左键</kbd> 轻击</span
+          ><span><kbd>右键</kbd> 重击 / 长按蓄力</span
+          ><span><kbd>Ctrl</kbd> 翻滚</span><span><kbd>Q</kbd> 烬线 / 6 秒</span
+          ><span><kbd>F</kbd> 回火 / 2 瓶</span
+          ><span class="pause-hint"><kbd>ESC</kbd> 暂停</span>
+        </div>
+      </section>
+      <section class="field-notes" aria-label="游戏提示">
+        <article>
+          <span class="note-number">01</span>
+          <div>
+            <h3>衔刃成势</h3>
+            <p>
+              左键衔接轻击；右键按住蓄力、松开重击。Ctrl 翻滚可取消蓄力与出剑。
+            </p>
+          </div>
+        </article>
+        <article>
+          <span class="note-number">02</span>
+          <div>
+            <h3>读懂丧钟</h3>
+            <p>红光是攻击预兆。横扫、震地、喷焰与冲锋各有不同节奏。</p>
+          </div>
+        </article>
+        <article>
+          <span class="note-number">03</span>
+          <div>
+            <h3>守住余火</h3>
+            <p>Q 烬线冷却 6 秒。F 回火耗时 0.8 秒且可被打断，全场仅两瓶。</p>
+          </div>
+        </article>
+      </section>
+      <footer>
+        <span
+          >EMBERFALL
+          <span class="muted">/</span> 一个关于不熄之火的小小实验</span
+        ><span
+          >原创像素世界 · WEBGL · 无需下载
+          <span class="footer-star">✳</span></span
+        >
+      </footer>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
